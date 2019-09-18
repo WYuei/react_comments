@@ -4,7 +4,7 @@ import CommentList from "../../components/comment-list/comment-list";
 
 import {connect} from '../../../node_modules/react-redux'
 
-import {addComment,deleteComment} from '../../redux/acitons'
+import {addComment,deleteComment,getComments} from '../../redux/acitons'
 
 class App extends Component{
    /* constructor(props)
@@ -27,6 +27,10 @@ class App extends Component{
         comments.splice(index,1)
         this.setState(comments)
     }*/
+    componentDidMount() {
+        this.props.getComments()
+    }
+
     render(){
         return (
             <div>
@@ -50,5 +54,5 @@ class App extends Component{
 
 export default connect(
     state=>({comments:state}), //state就是一个comments数组
-    {addComment,deleteComment}
+    {addComment,deleteComment,getComments}
 )(App)
